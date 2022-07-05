@@ -1,0 +1,184 @@
+{
+	"name": "Air",
+	"fileTypes": ["air"],
+	"scopeName": "source.air",
+
+	"patterns": [
+		{
+			"name": "meta.preprocessor.script.air",
+			"match": "^(#!.*)$"
+		},
+
+		{
+			"include": "#comments"
+		},
+		{
+			"include": "#constants"
+		},
+		{
+			"include": "#variables"
+		},
+		{
+			"include": "#functions"
+		},
+		{
+			"include": "#keywords"
+		},
+		{
+			"include": "#strings"
+		}
+	],
+
+	"repository": {
+		"comments": {
+			"patterns": [
+				{
+					"begin": "//",
+					"beginCaptures": {
+						"0": {
+							"name": "comment.punctuation.definition.air"
+						}
+					},
+					"end": "$",
+					"name": "comment.line.air"
+				}
+			]
+		},
+		"keywords": {
+			"patterns": [
+				{
+					"name": "keyword.control.air",
+					"match": "\\b(if|else|switch|case|while|for|loop|return)\\b"
+				},
+				{
+					"name": "keyword.control.module.air",
+					"match": "\\b(export|import|from)\\b"
+				}
+				
+			]
+		},
+		"variables": {
+			"patterns": [
+				{
+					"comment": "var declarations",
+					"match": "\\b(var|let)\\s+([A-Za-z0-9_]*)\\b",
+					"captures": {
+							"1": {
+									"name": "storage.type.air"
+							},
+							"2": {
+									"name": "entity.name.variable.air"
+							}
+					}
+				}
+			]
+		},
+		"constants": {
+			"patterns": [
+				{
+					"comment": "constant declarations",
+					"match": "\\b(const)\\s+([A-Za-z0-9_]*)\\b",
+					"captures": {
+						"1": {
+							"name": "storage.type.air"
+						},
+						"2": {
+							"name": "variable.other.constant.air"
+						}
+					}
+				}
+			]
+		},
+		"functions": {
+			"patterns": [
+				{
+					"comment": "func declarations",
+					"begin": "\\b(func)\\s+([A-Za-z0-9_]*)?((\\()|(<))",
+					"beginCaptures": {
+						"1": {
+								"name": "keyword.other.fn.air"
+						},
+						"2": {
+								"name": "entity.name.function.air"
+						},
+						"4": {
+								"name": "punctuation.brackets.round.air"
+						},
+						"5": {
+								"name": "punctuation.brackets.angle.air"
+						}
+				},
+				"end": "\\{|:"
+				}
+			]
+		},
+		"strings": {
+			"patterns": [
+				{
+					"name": "string.interpolated.double.air",
+					"begin": "(?<!\\|r)\"",
+					"end": "\"",
+					"patterns": [
+						{
+							"name": "invalid.string.newline",
+							"match": "\\n"
+						},
+						{
+							"include": "#string-interp"
+						}
+					]
+				},
+				{
+					"name": "string.quoted.double.air",
+					"begin": "r\"",
+					"end": "\"",
+					"patterns": [
+						{
+							"name": "invalid.string.newline",
+							"match": "\\n"
+						}
+					]
+				},
+				{
+					"name": "string.interpolated.single.air",
+					"begin": "(?<!\\|r)'",
+					"end": "'",
+					"patterns": [
+						{
+							"name": "invalid.string.newline",
+							"match": "\\n"
+						},
+						{
+							"include": "#string-interp"
+						}
+					]
+				},
+				{
+					"name": "string.quoted.single.air",
+					"begin": "r'",
+					"end": "'",
+					"patterns": [
+						{
+							"name": "invalid.string.newline",
+							"match": "\\n"
+						}
+					]
+				}
+			]
+		},
+
+		"punctuation": {
+			"patterns": [
+				{
+					"name": "punctuation.comma.air",
+					"match": ","
+				},
+
+				{
+					"name": "punctuation.dot.air",
+					"match": "\\."
+				}
+			]
+		}
+	}
+}

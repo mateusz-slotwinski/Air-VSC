@@ -1,0 +1,34 @@
+{
+    "name": "air",
+    "displayName": "Air",
+    "description": "Air language support for VSCode",
+    "version": "0.0.1",
+    "icon": "assets/vscode_ext.png",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/AirLanguage/VSCode-Plugin.git"
+      },
+    "engines": {
+        "vscode": "^1.65.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "air",
+            "aliases": ["Air", "air"],
+            "extensions": [".air"],
+            "configuration": "./language-configuration.json",
+            "icon": {
+                "light": "./assets/icon.png",
+                "dark": "./assets/icon.png"
+              }
+        }],
+        "grammars": [{
+            "language": "air",
+            "scopeName": "source.air",
+            "path": "./syntaxes/air.tmLanguage.json"
+        }]
+    }
+}
